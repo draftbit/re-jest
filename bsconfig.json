@@ -1,0 +1,28 @@
+{
+  "name": "re-jest",
+  "bsc-flags": ["-bs-super-errors"],
+  "warnings": {
+    "number": "-44-23",
+    "error": "+8+6+26+27"
+  },
+  "files": "*.re",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "__tests__",
+      "subdirs": true,
+      "type": "dev"
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "namespace": false
+}

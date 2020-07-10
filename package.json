@@ -1,0 +1,37 @@
+{
+  "name": "re-jest",
+  "version": "1.0.0",
+  "description": "Minimal bindings for Jest",
+  "main": "index.js",
+  "repository": "https://github.com/adnelson/re-jest",
+  "author": "Allen Nelson (ithinkican@gmail.com)",
+  "license": "MIT",
+  "peerDependencies": {
+    "bs-platform": "^5 || ^7 || ^8",
+    "jest": "*"
+  },
+  "devDependencies": {
+    "bs-platform": "^8.0.3",
+    "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5"
+  },
+  "scripts": {
+    "re:clean": "bsb -clean-world",
+    "re:build": "bsb -make-world",
+    "re:watch": "bsb -make-world -w",
+    "re:formatall": "find src __tests__ -name '*.re' | xargs npx bsrefmt --in-place",
+    "re:formatchanged": "git diff --name-only --diff-filter=d HEAD -- '*.re' | xargs -I{} realpath --relative-to=. $(git rev-parse --show-toplevel)/'{}' | while read f; do npx bsrefmt --in-place \"$f\"; done",
+    "test": "jest __tests__",
+    "test:watch": "jest __tests__ --watch",
+    "prepare": "echo $'#!/usr/bin/env bash\nexec npx lint-staged' > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit"
+  },
+  "lint-staged": {
+    "*.{re,rei}": [
+      "bsrefmt --in-place"
+    ],
+    "*.{json,yaml}": [
+      "prettier --write"
+    ]
+  }
+}
