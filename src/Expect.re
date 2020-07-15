@@ -16,7 +16,11 @@ external toBeGreaterThanOrEqual: (t('a), 'a) => unit =
 [@bs.send]
 external toBeLessThanOrEqual: (t('a), 'a) => unit = "toBeLessThanOrEqual";
 
-[@bs.get] external resolves: t(Js.Promise.t('a)) => t('a) = "resolves";
+[@bs.get]
+external resolves: t(Js.Promise.t('a)) => Js.Promise.t(t('a)) = "resolves";
+
+//let expectAsync: t(Js.Promise.t('a)) => (t('a) => unit) => unit = (expect, withExpect) => Js.Promise.then_
+
 [@bs.get]
 external rejects: t(Js.Promise.t('a)) => t(unit => 'a) = "rejects";
 

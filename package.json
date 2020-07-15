@@ -22,8 +22,8 @@
     "re:watch": "bsb -make-world -w",
     "re:formatall": "find src __tests__ -name '*.re' | xargs npx bsrefmt --in-place",
     "re:formatchanged": "git diff --name-only --diff-filter=d HEAD -- '*.re' | xargs -I{} realpath --relative-to=. $(git rev-parse --show-toplevel)/'{}' | while read f; do npx bsrefmt --in-place \"$f\"; done",
-    "test": "jest __tests__",
-    "test:watch": "jest __tests__ --watch",
+    "test": "jest --testPathPattern '__tests__/.*Tests?.bs.js$'",
+    "test:watch": "yarn jest --watch",
     "prepare": "echo $'#!/usr/bin/env bash\nexec npx lint-staged' > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit"
   },
   "lint-staged": {
