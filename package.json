@@ -1,5 +1,5 @@
 {
-  "name": "re-jest",
+  "name": "reason-jest",
   "version": "1.1.0",
   "description": "Minimal bindings for Jest",
   "main": "index.js",

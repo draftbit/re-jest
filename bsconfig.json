@@ -1,5 +1,5 @@
 {
-  "name": "re-jest",
+  "name": "reason-jest",
   "bsc-flags": ["-bs-super-errors"],
   "warnings": {
     "number": "-44-23",
