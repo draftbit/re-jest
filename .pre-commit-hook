@@ -1,0 +1,21 @@
+#!/bin/sh
+set -ex
+
+# This fixes a workaround that I had to employ to get bs-platform working
+# on nix. I have a script which pins bs-platform to the file path of the
+# version built by nix locally. However, I don't want to commit this, so
+# to ensure that doesn't happen, I have this pre-commit hook.
+node <<EOF
+var fs = require('fs');
+var packageJson = require('./package.json');
+var bsPlatform = packageJson.devDependencies['bs-platform'];
+var match = bsPlatform.match(/\d+\.\d+\.\d+$/);
+if (match && match[0] && match[0] !== bsPlatform) {
+  var version = match[0];
+  console.log(\`Setting bs-platform version to \${version}\`)
+  packageJson.devDependencies['bs-platform'] = version;
+  fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, indent=2));
+}
+EOF
+
+yarn lint-staged

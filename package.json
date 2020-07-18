@@ -11,7 +11,7 @@
     "jest": "*"
   },
   "devDependencies": {
-    "bs-platform": "^8.0.3",
+    "bs-platform": "7.3.1",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5"
@@ -24,8 +24,8 @@
     "re:formatall": "find src __tests__ -name '*.re' | xargs npx bsrefmt --in-place",
     "re:formatchanged": "git diff --name-only --diff-filter=d HEAD -- '*.re' | xargs -I{} realpath --relative-to=. $(git rev-parse --show-toplevel)/'{}' | while read f; do npx bsrefmt --in-place \"$f\"; done",
     "test": "jest --testPathPattern '__tests__/.*Tests?.bs.js$'",
-    "test:watch": "yarn jest --watch",
-    "prepare": "echo $'#!/usr/bin/env bash\nexec npx lint-staged' > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit"
+    "test:watch": "yarn test --watch",
+    "prepare": "mkdir -p .git/hooks && cp .pre-commit-hook .git/hooks/pre-commit"
   },
   "lint-staged": {
     "*.{re,rei}": [
@@ -34,5 +34,6 @@
     "*.{json,yaml}": [
       "prettier --write"
     ]
-  }
+  },
+  "dependencies": {}
 }

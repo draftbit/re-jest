@@ -44,6 +44,14 @@ module Tests = {
   /*   // expect(Js.Promise.reject(OhNo))->rejects->toThrowSomething; */
   /* }); */
 
+  describe("skip", () => {
+    testSkip("this test should get skipped", () => raise(OhNo))
+  });
+
+  describeSkip("none of these should be run", () => {
+    failingTest(~name="this test will fail if it gets run!", ())
+  });
+
   test("arrays", () => {
     let myArray = [|1, 2, 3, 4, 5|];
     expect(myArray)->toContain(4);
