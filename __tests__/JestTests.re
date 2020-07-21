@@ -54,6 +54,7 @@ module Tests = {
       resolve(123)
       |> then_(n => {
            expect(n)->toEqual(123);
+           expect(n)->not->toEqual(124);
            resolve();
          })
     )
