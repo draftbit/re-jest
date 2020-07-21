@@ -39,10 +39,27 @@ module Tests = {
     expect(myNumber->float_of_int)->toBeLessThan(124.0);
   });
 
-  /* test("promises", () => { */
-  /*   // TODO fixme expect(Js.Promise.resolve(123))->resolves->toEqual(123); */
-  /*   // expect(Js.Promise.reject(OhNo))->rejects->toThrowSomething; */
-  /* }); */
+  testAsync("async", () =>
+    Js.Promise.(
+      resolve(123)
+      |> then_(n => {
+           expect(n)->toEqual(123);
+           resolve();
+         })
+    )
+  );
+
+  testAsync("async", () =>
+    Js.Promise.(
+      resolve(123)
+      |> then_(n => {
+           expect(n)->toEqual(123);
+           resolve();
+         })
+    )
+  );
+
+  // todo test asyncs that fail
 
   describe("skip", () => {
     testSkip("this test should get skipped", () => raise(OhNo))
