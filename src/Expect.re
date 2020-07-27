@@ -22,3 +22,8 @@ external toBeLessThanOrEqual: (t('a), 'a) => unit = "toBeLessThanOrEqual";
 external rejects: t(Js.Promise.t('a)) => t(unit => 'a) = "rejects";
 
 [@bs.send] external toContain: (t(array('a)), 'a) => unit = "toContain";
+
+// This isn't a real string, but it can be used to construct a predicate on a string
+// expect("hello world")->toEqual(stringContaining("hello"));
+[@bs.val] [@bs.scope "expect"]
+external stringContaining: string => string = "stringContaining";

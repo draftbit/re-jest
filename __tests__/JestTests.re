@@ -27,6 +27,10 @@ module Tests = {
     );
   });
 
+  test("stringContaining", () => {
+    expect("hello world")->toEqual(stringContaining("hello"))
+  });
+
   test("numbers", () => {
     let myNumber = 123;
     expect(myNumber)->toBeGreaterThan(100);
