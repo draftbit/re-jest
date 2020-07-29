@@ -67,7 +67,9 @@ module Tests = {
   // todo test asyncs that fail
 
   describe("skip", () => {
-    testSkip("this test should get skipped", () => raise(OhNo))
+    Skip.test("this test should get skipped", () =>
+      raise(OhNo)
+    )
   });
 
   describeSkip("none of these should be run", () => {

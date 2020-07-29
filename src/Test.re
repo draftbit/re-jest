@@ -13,14 +13,34 @@ external testAsyncU:
 let testAsync: (~timeout: int=?, string, unit => Js.Promise.t(unit)) => unit =
   (~timeout=?, name, f) => testAsyncU(name, (.) => f(), timeout);
 
-[@bs.val] [@bs.scope "test"]
-external testOnlyU: (string, (. unit) => unit, option(int)) => unit = "only";
+module Only = {
+  [@bs.val] [@bs.scope "test"]
+  external testU: (string, (. unit) => unit, option(int)) => unit = "only";
 
-let testOnly: (~timeout: int=?, string, unit => unit) => unit =
-  (~timeout=?, name, f) => testOnlyU(name, (.) => f(), timeout);
+  let test: (~timeout: int=?, string, unit => unit) => unit =
+    (~timeout=?, name, f) => testU(name, (.) => f(), timeout);
 
-[@bs.val] [@bs.scope "test"]
-external testSkipU: (string, (. unit) => unit, option(int)) => unit = "skip";
+  [@bs.val] [@bs.scope "test"]
+  external testAsyncU:
+    (string, (. unit) => Js.Promise.t(unit), option(int)) => unit =
+    "only";
 
-let testSkip: (~timeout: int=?, string, unit => unit) => unit =
-  (~timeout=?, name, f) => testSkipU(name, (.) => f(), timeout);
+  let testAsync: (~timeout: int=?, string, unit => Js.Promise.t(unit)) => unit =
+    (~timeout=?, name, f) => testAsyncU(name, (.) => f(), timeout);
+};
+
+module Skip = {
+  [@bs.val] [@bs.scope "test"]
+  external testU: (string, (. unit) => unit, option(int)) => unit = "skip";
+
+  let test: (~timeout: int=?, string, unit => unit) => unit =
+    (~timeout=?, name, f) => testU(name, (.) => f(), timeout);
+
+  [@bs.val] [@bs.scope "test"]
+  external testAsyncU:
+    (string, (. unit) => Js.Promise.t(unit), option(int)) => unit =
+    "skip";
+
+  let testAsync: (~timeout: int=?, string, unit => Js.Promise.t(unit)) => unit =
+    (~timeout=?, name, f) => testAsyncU(name, (.) => f(), timeout);
+};
