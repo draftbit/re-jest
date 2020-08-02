@@ -80,4 +80,38 @@ module Tests = {
     let myArray = [|1, 2, 3, 4, 5|];
     expect(myArray)->toContain(4);
   });
+
+  describe("setup", () => {
+    describe("sync", () => {
+      let count = ref(None);
+      beforeAll(() => {count := Some(0)});
+      beforeEach(() => count := Some((count^)->Belt.Option.getExn + 1));
+      afterEach(() => count := Some((count^)->Belt.Option.getExn + 1));
+
+      passingTest();
+      passingTest();
+      passingTest();
+      test("got the right count", () =>
+        expect(count^)->toEqual(Some(7))
+      );
+    });
+
+    describe("async", () => {
+      let count = ref(None);
+      beforeAllAsync(() => Js.Promise.resolve(count := Some(0)));
+      beforeEachAsync(() =>
+        Js.Promise.resolve(count := Some((count^)->Belt.Option.getExn + 1))
+      );
+      afterEachAsync(() =>
+        Js.Promise.resolve(count := Some((count^)->Belt.Option.getExn + 1))
+      );
+
+      passingTest();
+      passingTest();
+      passingTest();
+      test("got the right count", () =>
+        expect(count^)->toEqual(Some(7))
+      );
+    });
+  });
 };
