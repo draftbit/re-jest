@@ -27,3 +27,8 @@ external rejects: t(Js.Promise.t('a)) => t(unit => 'a) = "rejects";
 // expect("hello world")->toEqual(stringContaining("hello"));
 [@bs.val] [@bs.scope "expect"]
 external stringContaining: string => string = "stringContaining";
+
+// This isn't a real array, but it can be used to construct a predicate on an array
+// expect([|"x", "y", "z"|])->toEqual(arrayContaining([|"x", "z"|]))
+[@bs.val] [@bs.scope "expect"]
+external arrayContaining: array('a) => array('a) = "arrayContaining";

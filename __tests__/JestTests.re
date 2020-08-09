@@ -31,6 +31,10 @@ module Tests = {
     expect("hello world")->toEqual(stringContaining("hello"))
   });
 
+  test("arrayContaining", () => {
+    expect([|"x", "y", "z"|])->toEqual(arrayContaining([|"x", "z"|]))
+  });
+
   test("numbers", () => {
     let myNumber = 123;
     expect(myNumber)->toBeGreaterThan(100);
