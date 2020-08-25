@@ -76,7 +76,7 @@ module Tests = {
     )
   });
 
-  describeSkip("none of these should be run", () => {
+  Skip.describe("none of these should be run", () => {
     failingTest(~name="this test will fail if it gets run!", ())
   });
 

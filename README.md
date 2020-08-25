@@ -15,13 +15,20 @@ describe("myTests", () => {
     expect(myNumber->float_of_int)->toBeLessThan(124.0);
   });
 
-  test("promises", () => {
+  testAsync("promises", () => {
     expect(Js.Promise.resolve(123))->resolves->toEqual(123);
   });
 
   test("arrays", () => {
     expect([|1, 2, 3, 4, 5|])->toContain(4);
   });
+
+  // Still working on this one...
+  Skip.test("billion dollar idea generator",
+    () =>
+      expect(generateBillionDollarCompany()->valuation)
+      ->toBeGreaterThan(1000000000)
+  );
 });
 ```
 
