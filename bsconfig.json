@@ -1,11 +1,12 @@
 {
   "name": "reason-jest",
   "bsc-flags": ["-bs-super-errors"],
+  "uncurried": false,
   "warnings": {
     "number": "-44-23",
     "error": "+8+6+26+27"
   },
-  "files": "*.re",
+  "files": "*.res",
   "sources": [
     {
       "dir": "src",

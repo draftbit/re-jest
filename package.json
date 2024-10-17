@@ -1,17 +1,17 @@
 {
   "name": "reason-jest",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "Minimal bindings for Jest",
   "main": "index.js",
   "repository": "https://github.com/adnelson/re-jest",
   "author": "Allen Nelson (ithinkican@gmail.com)",
   "license": "MIT",
   "peerDependencies": {
-    "bs-platform": "^5 || ^7 || ^8 || ^9",
+    "rescript": "^10 || ^11",
     "jest": "*"
   },
   "devDependencies": {
-    "bs-platform": "7.3.1",
+    "rescript": "^11",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5"
